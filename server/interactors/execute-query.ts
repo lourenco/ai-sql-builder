@@ -1,11 +1,13 @@
-import sql from '../db'
+import db from '../db'
 
-export function executeQuery(query: string) {
+export async function executeQuery(query: string) {
   if (!isReadOnly(query)) {
     return Promise.reject({error: 'The query must be read-only'})
   }
 
-  return sql.unsafe(query)
+  const {rows} = await db.query(query)
+
+  return rows
 }
 
 function isReadOnly(query: string) {

@@ -17,6 +17,7 @@
     "clsx": "^2.1.1",
     "lodash": "^4.17.21",
     "next": "15.3.0",
+    "pg": "^8.14.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-highlight": "^0.15.0"
@@ -27,6 +28,7 @@
     "@types/bun": "latest",
     "@types/lodash": "^4.17.16",
     "@types/node": "^20",
+    "@types/pg": "^8.11.13",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-highlight": "^0.12.8",

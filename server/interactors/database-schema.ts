@@ -1,4 +1,4 @@
-import sql from '../db'
+import db from '../db'
 import {memoryCache} from '../memory-cache'
 import type {DatabaseSchemaRow} from '../types'
 
@@ -16,8 +16,8 @@ export async function fetchDatabaseSchema() {
   return schema
 }
 
-function flushDatabaseSchemaQuery(): Promise<DatabaseSchemaRow[]> {
-  return sql`
+async function flushDatabaseSchemaQuery(): Promise<DatabaseSchemaRow[]> {
+  const {rows} = await db.query(`
 		SELECT table_schema as "tableSchema",
 			table_name as "tableName",
 			column_name as "columnName",
@@ -26,5 +26,7 @@ function flushDatabaseSchemaQuery(): Promise<DatabaseSchemaRow[]> {
 
     WHERE table_schema NOT IN ('information_schema', 'pg_catalog')
     ORDER BY table_schema, table_name, ordinal_position
-	`
+	`)
+
+  return rows
 }

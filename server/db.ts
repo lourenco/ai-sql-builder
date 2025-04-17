@@ -1,5 +1,7 @@
-import {SQL} from 'bun';
+import {Pool} from 'pg'
 
-const db = new SQL(process.env.PG_CONNECTION_STRING as string);
+const pool = new Pool({
+  connectionString: process.env.PG_CONNECTION_STRING as string,
+});
 
-export default db
+export default pool
