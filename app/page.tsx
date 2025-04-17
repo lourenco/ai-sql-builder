@@ -1,6 +1,8 @@
 import {fetchDatabaseSchema} from '@/services'
 import AiSql from './components/AiSql'
 
+export const dynamic = 'force-dynamic';
+
 const Home = async () => {
   const {tableNames, data} = await fetchDatabaseSchema()
 
