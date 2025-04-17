@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15
+    container_name: ai_sql
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: foobar
+      POSTGRES_DB: ai_sql
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./infraestructure/migration.sql:/docker-entrypoint-initdb.d/1_migration.sql
+      - ./infraestructure/seed.sql:/docker-entrypoint-initdb.d/2_seed.sql
