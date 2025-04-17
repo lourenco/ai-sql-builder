@@ -3,21 +3,21 @@ import {memoryCache} from '../memory-cache'
 import type {DatabaseSchemaRow} from '../types'
 
 export async function fetchDatabaseSchema() {
-	const schemaCached = memoryCache.get('database-schema')
+  const schemaCached = memoryCache.get('database-schema')
 
-	if (schemaCached) {
-		return schemaCached
-	}
+  if (schemaCached) {
+    return schemaCached
+  }
 
-	const schema = await flushDatabaseSchemaQuery()
+  const schema = await flushDatabaseSchemaQuery()
 
-	memoryCache.set('database-schema', schema)
+  memoryCache.set('database-schema', schema)
 
-	return schema
+  return schema
 }
 
 function flushDatabaseSchemaQuery(): Promise<DatabaseSchemaRow[]> {
-	return sql`
+  return sql`
 		SELECT table_schema as "tableSchema",
 			table_name as "tableName",
 			column_name as "columnName",

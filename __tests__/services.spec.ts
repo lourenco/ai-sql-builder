@@ -5,16 +5,16 @@ import {fetchAiSqlChat} from '../services'
 afterAll(() => clearMocks())
 
 test('fetchAiSqlChat()', async () => {
-	const prompt = 'listar usuários'
-	const data = JSON.stringify({prompt})
+  const prompt = 'listar usuários'
+  const data = JSON.stringify({prompt})
 
-	mock(`${process.env.API_URL}/api/ai-sql-chat`, {
-		data,
-		method: 'POST',
-		response: {data: 'foo'}
-	})
+  mock(`${process.env.API_URL}/api/ai-sql-chat`, {
+    data,
+    method: 'POST',
+    response: {data: 'foo'}
+  })
 
-	const result = await fetchAiSqlChat(prompt)
+  const result = await fetchAiSqlChat(prompt)
 
-	expect(result).toEqual('foo')
+  expect(result).toEqual('foo')
 })
